@@ -9,9 +9,9 @@ function App(): JSX.Element {
             <p>Hello</p>
             My list:
             <ul>
-                <li>Monday</li>
-                <li>Tuesday</li>
-                <li>Wednesday</li>
+                <li>fish</li>
+                <li>dog</li>
+                <li>cat</li>
             </ul>
             <img src=".../Images/fishman.png" alt="is fish" />
             <Button onClick={() => console.log("Hello World")}>
