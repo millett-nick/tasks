@@ -7,10 +7,11 @@ function App(): JSX.Element {
     return (
         <>
             <div className="App">
+                <h1>UM COS 420 Nickolas Milllett</h1>
                 <header className="App-header">
                     UM COS420 Nickolas Milllett
                 </header>
-                <p>Hello</p>
+                <p>Hello World!</p>
                 <Container>
                     <Row>
                         <Col>
@@ -39,7 +40,7 @@ function App(): JSX.Element {
                             Second Column
                             <img src=".../Images/fishman.png" alt="is fish" />
                         </Col>
-                        <Button onClick={() => console.log("Hello World")}>
+                        <Button onClick={() => console.log("Hello World!")}>
                             Log Hello World
                         </Button>
                     </Row>
