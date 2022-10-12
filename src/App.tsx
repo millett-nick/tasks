@@ -1,15 +1,22 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import "./App.css";
 
 function App(): JSX.Element {
     return (
         <div className="App">
-            <header className="App-header">
-                UM COS420 with React Hooks and TypeScript
-            </header>
-            <p>
-                Edit <code>src/App.tsx</code> and save to reload.
-            </p>
+            <header className="App-header">UM COS420 Nickolas Milllett</header>
+            <p>Hello</p>
+            My list:
+            <ul>
+                <li>Monday</li>
+                <li>Tuesday</li>
+                <li>Wednesday</li>
+            </ul>
+            <img src=".../Images/fishman.png" alt="is fish" />
+            <Button onClick={() => console.log("Hello World")}>
+                Log Hello World
+            </Button>
         </div>
     );
 }
