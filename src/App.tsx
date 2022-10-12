@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
+import { reduceEachLeadingCommentRange } from "typescript";
 import "./App.css";
 
 function App(): JSX.Element {
@@ -13,6 +14,13 @@ function App(): JSX.Element {
                 <Container>
                     <Row>
                         <Col>
+                            <div
+                                style={{
+                                    width: "400px",
+                                    height: "10px",
+                                    backgroundColor: "red"
+                                }}
+                            ></div>
                             First Column. My list:
                             <ul>
                                 <li>fish</li>
@@ -21,6 +29,13 @@ function App(): JSX.Element {
                             </ul>
                         </Col>
                         <Col>
+                            <div
+                                style={{
+                                    width: "400px",
+                                    height: "10px",
+                                    backgroundColor: "red"
+                                }}
+                            ></div>
                             Second Column
                             <img src=".../Images/fishman.png" alt="is fish" />
                         </Col>
