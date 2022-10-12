@@ -25,7 +25,9 @@ export function add3(first: number, second: number, third: number): number {
  * mark added to the end.
  */
 export function shout(message: string): string {
-    return "";
+    let shout = " ";
+    shout = message.toUpperCase + "!";
+    return shout;
 }
 
 /**
@@ -42,5 +44,9 @@ export function isQuestion(message: string): boolean {
  * upper or lower case), then return `false`. Otherwise, return `null`.
  */
 export function convertYesNo(word: string): boolean | null {
-    return true;
+    let answer = null;
+    word === ("yes" || "YES") ? (answer = true) : (answer = null);
+    if (word === ("no" || "NO")) answer = false;
+
+    return answer;
 }
