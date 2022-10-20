@@ -29,8 +29,13 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    const test = numbers.map((numbers: string): number => parseInt(numbers));
-    return test;
+    const test = numbers.map((numbers: string): number =>
+        parseInt(numbers, 10)
+    );
+    const test1 = test.map(
+        (numbers: number): number => (numbers = numbers || 0)
+    );
+    return test1;
 }
 
 /**
@@ -72,7 +77,13 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    const RGB = colors.every((colors: string): boolean =>
+        colors.includes("red" || "blue" || "green")
+    );
+    if (colors.length === 0) {
+        return true;
+    }
+    return RGB;
 }
 
 /**
@@ -83,6 +94,7 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
+    // const add = {nums: number[]}:number => ()
     return "";
 }
 
