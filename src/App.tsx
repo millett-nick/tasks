@@ -5,7 +5,6 @@ import "./App.css";
 
 function App(): JSX.Element {
     return (
-<<<<<<< HEAD
         <>
             <div className="App">
                 <h1>UM COS 420 Nickolas Milllett</h1>
@@ -48,16 +47,6 @@ function App(): JSX.Element {
                 </Container>
             </div>
         </>
-=======
-        <div className="App">
-            <header className="App-header">
-                UM COS420 with React Hooks and TypeScript
-            </header>
-            <p>
-                Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-        </div>
->>>>>>> upstream/task-arrays
     );
 }
 

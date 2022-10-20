@@ -5,7 +5,14 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    const bookend = [0];
+    bookend.splice(0, 1, numbers[0]);
+    if (numbers.length === 0) {
+        return numbers;
+    } else {
+        bookend.splice(1, 0, numbers[numbers.length - 1]);
+    }
+    return bookend;
 }
 
 /**
@@ -22,7 +29,8 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    const test = numbers.map((numbers: string): number => parseInt(numbers));
+    return test;
 }
 
 /**
@@ -42,6 +50,9 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
+    const shout = messages.filter((messages: string): boolean =>
+        messages.includes()
+    );
     return [];
 };
 
@@ -50,7 +61,9 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    const short = words.filter((words) => words.length < 4);
+    const num = short.length;
+    return num;
 }
 
 /**
