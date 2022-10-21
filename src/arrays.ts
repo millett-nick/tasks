@@ -63,9 +63,10 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    const test0 = messages.filter((amounts: string): string =>
-        amounts.includes("?")
+    const test0 = messages.filter(
+        (value: string): boolean => !value.includes("?")
     );
+
     const test1 = test0.map((amounts: string): string =>
         amounts.includes("!") ? amounts.toUpperCase() : amounts
     );
@@ -88,13 +89,23 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    const RGB = colors.every((colors: string): boolean =>
-        colors.includes("red" || "blue" || "green")
-    );
-    if (colors.length === 0) {
-        return true;
-    }
-    return RGB;
+    const newcolors = [...colors];
+    //console.log(newcolors);
+    const testcolor = (first: string): boolean => {
+        let bool = false;
+        first === "red" ? (bool = true) : false;
+        first === "blue" ? (bool = true) : false;
+        first === "green" ? (bool = true) : false;
+        if (bool === true) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    const test1 = newcolors.map((color: string): boolean => testcolor(color));
+    const test2 = test1.every((bool: boolean): boolean => bool === true);
+    //console.log(test2);
+    return test2;
 }
 
 /**
@@ -123,18 +134,20 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    if (values.some((value: number): boolean => value < 0)) {
-        const firstneg = values.findIndex(
+    const newvalues = [...values];
+    if (newvalues.some((value: number): boolean => value < 0)) {
+        const firstneg = newvalues.findIndex(
             (value: number): boolean => value < 0
         );
-        const values2 = values;
+        const values2 = newvalues;
         const newarr = values2.slice(0, firstneg);
         const sum = newarr.reduce(
-            (currentTotal, num: number) => currentTotal + num
+            (currentTotal, num: number) => currentTotal + num,
+            0
         );
         const valuein = [...values];
         valuein.splice(firstneg + 1, 0, sum);
-        console.log(valuein);
+        //console.log(valuein);
 
         return valuein;
     } else {
@@ -144,7 +157,7 @@ export function injectPositive(values: number[]): number[] {
         );
         const valuein = [...values];
         valuein.splice(values.length, 0, sum);
-        console.log(valuein);
+        // console.log(valuein);
 
         return valuein;
     }
