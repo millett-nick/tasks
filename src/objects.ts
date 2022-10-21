@@ -12,7 +12,7 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType
 ): Question {
-    let test = {
+    const test = {
         id,
         name,
         type,
@@ -33,7 +33,12 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    return false;
+    let test = false;
+    const newans = answer.trim();
+    const newans1 = newans.toLowerCase();
+    const expectedans = question.expected.toLowerCase();
+    expectedans === newans1 ? (test = true) : (test = false);
+    return test;
 }
 
 /**
