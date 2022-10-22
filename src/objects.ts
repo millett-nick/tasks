@@ -33,10 +33,11 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
+    const newquestion = { ...question, options: [...question.options] };
     let test = false;
     const newans = answer.trim();
     const newans1 = newans.toLowerCase();
-    const expectedans = question.expected.toLowerCase();
+    const expectedans = newquestion.expected.toLowerCase();
     expectedans === newans1 ? (test = true) : (test = false);
     return test;
 }
@@ -48,7 +49,23 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
-    return false;
+    const newquestion = { ...question, options: [...question.options] };
+    let test = false;
+    const newans = answer.trim();
+    const newans1 = newans.toLowerCase();
+    let foo = false;
+    newquestion.type === "short_answer_question"
+        ? (foo = true)
+        : (foo = newquestion.options.some(
+              (a: string): boolean =>
+                  newquestion.type === "multiple_choice_question" &&
+                  a === answer
+          ));
+    //console.log(newquestion);
+    //console.log(newans1);
+    //console.log(foo);
+    //console.log(newquestion.type);
+    return foo;
 }
 
 /**
@@ -58,8 +75,9 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    const cutname = question.name.slice(0, 10);
-    return question.id + ": " + cutname;
+    const newquestion = { ...question, options: [...question.options] };
+    const cutname = newquestion.name.slice(0, 10);
+    return newquestion.id + ": " + cutname;
 }
 
 /**
@@ -80,7 +98,8 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    return "# " + question.name + "\n" + question.body;
+    const newquestion = { ...question, options: [...question.options] };
+    return "# " + newquestion.name + "\n" + newquestion.body;
 }
 
 /**
@@ -88,8 +107,9 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    question.name = newName;
-    return question;
+    const newquestion = { ...question, options: [...question.options] };
+    newquestion.name = newName;
+    return newquestion;
 }
 
 /**
@@ -98,8 +118,8 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    // console.log(question);
-    const newquestion = { ...question };
+    console.log(question);
+    const newquestion = { ...question, options: [...question.options] };
     newquestion.published === true
         ? (newquestion.published = false)
         : (newquestion.published = true);
@@ -114,12 +134,16 @@ export function publishQuestion(question: Question): Question {
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
     //console.log(oldQuestion.name);
+    const newquestion = { ...oldQuestion, options: [...oldQuestion.options] };
+    //console.log(id);
     const dupquestion = {
-        ...oldQuestion,
+        ...newquestion,
+        options: [...oldQuestion.options],
         id: id,
-        name: "Copy of " + oldQuestion.name,
+        name: "Copy of " + newquestion.name,
         published: false
     };
+    //console.log(dupquestion);
     return dupquestion;
 }
 
