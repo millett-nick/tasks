@@ -98,8 +98,19 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
+    let final = "";
+    let test = "";
     const newquestion = { ...question, options: [...question.options] };
-    return "# " + newquestion.name + "\n" + newquestion.body;
+    final = "# " + newquestion.name + "\n" + newquestion.body;
+    //console.log(question);
+    //console.log(newquestion.options);
+    newquestion.type === "multiple_choice_question"
+        ? ((final = "# " + newquestion.name + "\n" + newquestion.body + "\n- "),
+          (test = newquestion.options.join("\n- ")))
+        : (test = "");
+    final = final + test;
+    //test = newquestion.options.map((a: string): string => "- " + a);
+    return final;
 }
 
 /**
@@ -118,7 +129,7 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    console.log(question);
+    //console.log(question);
     const newquestion = { ...question, options: [...question.options] };
     newquestion.published === true
         ? (newquestion.published = false)
@@ -155,13 +166,19 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    return question;
+    //console.log(question + newOption);
+    const newquestion = {
+        ...question,
+        options: [...question.options, newOption]
+    };
+    return newquestion;
 }
 
 /**
  * Consumes an id, name, and two questions, and produces a new question.
  * The new question will use the `body`, `type`, `options`, and `expected` of the
- * `contentQuestion`. The second question will provide the `points`.
+ * `contentQuestion`.
+ * The second question will provide the `points`.
  * The `published` status should be set to false.
  * Notice that the second Question is provided as just an object with a `points`
  * field; but the function call would be the same as if it were a `Question` type!
@@ -172,5 +189,14 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
-    return contentQuestion;
+    const newquestion = {
+        ...contentQuestion,
+        options: [...contentQuestion.options],
+        id: id,
+        name: name,
+        published: false,
+        points: points
+    };
+    console.log(newquestion);
+    return newquestion;
 }
