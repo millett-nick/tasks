@@ -1,3 +1,4 @@
+import { createFalse } from "typescript";
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
 
@@ -140,7 +141,7 @@ export function toCSV(questions: Question[]): string {
     const deepCopy = questions.map(
         (question: Question): Question => ({ ...question })
     );
-    console.log(deepCopy);
+    // console.log(deepCopy);
     const CSV = deepCopy
         .map(
             (question: Question): string =>
@@ -157,7 +158,18 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    const deepCopy = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    const ans = deepCopy.map(
+        (question: Question): Answer => ({
+            questionId: question.id,
+            text: "",
+            submitted: false,
+            correct: false
+        })
+    );
+    return ans;
 }
 
 /***
@@ -165,7 +177,13 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    const deepCopy = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    const newquestion = deepCopy.map(
+        (question: Question): Question => ({ ...question, published: true })
+    );
+    return newquestion;
 }
 
 /***
