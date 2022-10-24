@@ -1,6 +1,7 @@
 import { createFalse } from "typescript";
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
+import { duplicateQuestion, makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -47,12 +48,14 @@ export function findQuestion(
     const doescontain = questions.some(
         (question: Question): boolean => question.id === id
     );
-    let pubquestions: Question;
     if (doescontain === true) {
         const pubquestions = questions.find(
             (question: Question): boolean => question.id === id
         );
-        return null;
+        if (pubquestions === undefined) {
+            return null;
+        }
+        return pubquestions;
     } else {
         return null;
     }
@@ -191,7 +194,15 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    const deepCopy = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    const test = deepCopy.filter((a) => a.type == "multiple_choice_question");
+    let value = false;
+    test.length === 0 || test.length === deepCopy.length
+        ? (value = true)
+        : (value = false);
+    return value;
 }
 
 /***
@@ -205,7 +216,10 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    const test = makeBlankQuestion(id, name, type);
+    const newquestion = [...questions, test];
+
+    return newquestion;
 }
 
 /***
@@ -218,7 +232,14 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const deepCopy = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    const test = deepCopy.map(
+        (question: Question): Question =>
+            question.id === targetId ? { ...question, name: newName } : question
+    );
+    return test;
 }
 
 /***
@@ -233,7 +254,25 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    const deepCopy = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    const test = deepCopy.map(
+        (question: Question): Question =>
+            question.id === targetId
+                ? { ...question, type: newQuestionType }
+                : question
+    );
+    //console.log(test);
+    const test1 = test.map(
+        (question: Question): Question =>
+            question.id === targetId &&
+            question.type === "short_answer_question"
+                ? { ...question, options: [] }
+                : question
+    );
+    //console.log(test1);
+    return test1;
 }
 
 /**
