@@ -291,7 +291,43 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    const deepCopy = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    //console.log(deepCopy);
+
+    console.log(test);
+
+    // console.log(targetId);
+    //console.log(targetOptionIndex);
+    //console.log(test1);
+    if (targetOptionIndex === -1) {
+        const test1 = deepCopy.map(
+            (question: Question): Question =>
+                question.id === targetId && targetOptionIndex === -1
+                    ? {
+                          ...question,
+                          options: [...question.options, newOption]
+                      }
+                    : question
+        );
+        return test1;
+    } else {
+        const test = deepCopy.map(
+            (question: Question): Question =>
+                question.id === targetId && targetOptionIndex !== -1
+                    ? {
+                          ...question,
+                          options: question.options.splice(
+                              targetOptionIndex,
+                              1,
+                              newOption
+                          )
+                      }
+                    : question
+        );
+        return test;
+    }
 }
 
 /***
@@ -305,5 +341,20 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    const deepCopy = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    const a = deepCopy.find(
+        (question: Question): boolean => question.id === targetId
+    );
+    const b = deepCopy.findIndex(
+        (question: Question): boolean => question.id === targetId
+    );
+
+    if (a !== undefined) {
+        const dup = duplicateQuestion(newId, a);
+        deepCopy.splice(b + 1, 0, dup);
+    }
+
+    return deepCopy;
 }
