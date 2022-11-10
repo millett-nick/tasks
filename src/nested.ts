@@ -291,18 +291,16 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    const deepCopy = questions.map(
+    const deepCopy1 = questions.map(
         (question: Question): Question => ({ ...question })
     );
-    //console.log(deepCopy);
 
-    console.log(test);
+    const deepCopy0 = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
 
-    // console.log(targetId);
-    //console.log(targetOptionIndex);
-    //console.log(test1);
     if (targetOptionIndex === -1) {
-        const test1 = deepCopy.map(
+        const test1 = deepCopy0.map(
             (question: Question): Question =>
                 question.id === targetId && targetOptionIndex === -1
                     ? {
@@ -313,7 +311,7 @@ export function editOption(
         );
         return test1;
     } else {
-        const test = deepCopy.map(
+        const test = deepCopy1.map(
             (question: Question): Question =>
                 question.id === targetId && targetOptionIndex !== -1
                     ? {
