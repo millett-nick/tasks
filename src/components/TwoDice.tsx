@@ -13,19 +13,19 @@ export function d6(): number {
 }
 
 export function TwoDice(): JSX.Element {
-    const [d1, setd1] = useState<number>(d6);
-    const [d2, setd2] = useState<number>(d6);
+    const [d1, setd1] = useState<number>(1);
+    const [d2, setd2] = useState<number>(0);
 
     return (
         <div>
             <span>
-                <Button onClick={() => setd1(d6)} data-testid="left-die">
+                <Button onClick={() => setd2(d6)} data-testid="left-die">
                     Roll Left
                 </Button>
             </span>
             <span>{d1}</span>
             <span>
-                <Button onClick={() => setd2(d6)} data-testid="right-die">
+                <Button onClick={() => setd1(d6)} data-testid="right-die">
                     Roll Right
                 </Button>
             </span>

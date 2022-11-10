@@ -12,9 +12,11 @@ import { Counter } from "./components/Counter";
 function App(): JSX.Element {
     return (
         <div className="App">
+            <h1>UM COS 420 Nickolas Millett</h1>
             <header className="App-header">
                 UM COS420 with React Hooks and TypeScript
             </header>
+            <p>Hello World!</p>
             <hr></hr>
             <Counter></Counter>
             <hr />
@@ -27,6 +29,39 @@ function App(): JSX.Element {
             <ChangeType></ChangeType>
             <hr />
             <CycleHoliday></CycleHoliday>
+            <Container>
+                <Row>
+                    <Col>
+                        <div
+                            style={{
+                                width: "400px",
+                                height: "10px",
+                                backgroundColor: "red"
+                            }}
+                        ></div>
+                        First Column. My list:
+                        <ul>
+                            <li>fish</li>
+                            <li>dog</li>
+                            <li>cat</li>
+                        </ul>
+                    </Col>
+                    <Col>
+                        <div
+                            style={{
+                                width: "400px",
+                                height: "10px",
+                                backgroundColor: "red"
+                            }}
+                        ></div>
+                        Second Column
+                        <img src=".../Images/fishman.png" alt="is fish" />
+                    </Col>
+                    <Button onClick={() => console.log("Hello World!")}>
+                        Log Hello World
+                    </Button>
+                </Row>
+            </Container>
         </div>
     );
 }
