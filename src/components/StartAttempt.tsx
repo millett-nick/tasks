@@ -19,7 +19,6 @@ export function StartAttempt(): JSX.Element {
             <Button onClick={start} disabled={progress || attemps === 0}>
                 Start Quiz
             </Button>
-            {}
             <Button onClick={stop} disabled={!progress}>
                 Stop Quiz
             </Button>
