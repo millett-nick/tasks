@@ -22,7 +22,7 @@ function App(): JSX.Element {
             </header>
             <p>Hello World!</p>
             <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
+            <DoubleHalf></DoubleHalf>
             <hr></hr>
             <ChooseTeam></ChooseTeam>
             <hr></hr>
